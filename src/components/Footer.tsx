@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
+  const { t } = useLanguage();
+  
   return (
     <footer className="bg-card border-t border-border">
       <div className="container mx-auto px-4 py-12">
@@ -11,37 +14,37 @@ const Footer = () => {
           <div className="space-y-4">
             <img src={logo} alt="CA Plombier Genève" className="h-12" />
             <p className="text-sm text-muted-foreground">
-              Votre expert en plomberie et sanitaire à Genève. Service disponible 24h/24 et 7j/7 pour toutes urgences.
+              {t("footer.title")}. {t("footer.subtitle")}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Navigation</h3>
+            <h3 className="font-semibold text-foreground mb-4">{t("footer.quicklinks")}</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Accueil
+                  {t("nav.home")}
                 </Link>
               </li>
               <li>
                 <Link to="/services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Les Services
+                  {t("nav.services")}
                 </Link>
               </li>
               <li>
                 <Link to="/debouchage" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Débouchage
+                  {t("nav.debouchage")}
                 </Link>
               </li>
               <li>
                 <Link to="/conseils" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Nos Conseils
+                  {t("nav.conseils")}
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Contact
+                  {t("nav.contact")}
                 </Link>
               </li>
             </ul>
@@ -49,7 +52,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Contact</h3>
+            <h3 className="font-semibold text-foreground mb-4">{t("footer.contact.title")}</h3>
             <ul className="space-y-3">
               <li>
                 <a href="tel:0225197269" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -66,7 +69,7 @@ const Footer = () => {
               <li>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <MapPin className="h-4 w-4" />
-                  Genève, Switzerland
+                  Rue de Lyon 59, 1203 Genève
                 </div>
               </li>
             </ul>
@@ -74,9 +77,9 @@ const Footer = () => {
 
           {/* Social & Hours */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Horaires</h3>
+            <h3 className="font-semibold text-foreground mb-4">{t("contact.hours")}</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Service disponible 24h/24 - 7j/7 pour toutes urgences
+              {t("footer.subtitle")}
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Facebook">
@@ -96,17 +99,17 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} CA Plombier Genève. Tous droits réservés.
+              © {new Date().getFullYear()} CA Plombier Genève. {t("footer.rights")}
             </p>
             <div className="flex gap-6">
               <Link to="/impressum" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Impressum
+                {t("footer.impressum")}
               </Link>
               <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Privacy Policy
+                {t("footer.privacy")}
               </Link>
               <Link to="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Terms of Service
+                {t("footer.terms")}
               </Link>
             </div>
           </div>

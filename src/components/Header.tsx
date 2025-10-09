@@ -2,18 +2,21 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Phone, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
 
   const navItems = [
-    { path: "/", label: "Accueil" },
-    { path: "/services", label: "Les Services" },
-    { path: "/debouchage", label: "Débouchage" },
-    { path: "/conseils", label: "Nos Conseils" },
-    { path: "/contact", label: "Contact" },
+    { path: "/", label: t("nav.home") },
+    { path: "/services", label: t("nav.services") },
+    { path: "/debouchage", label: t("nav.debouchage") },
+    { path: "/conseils", label: t("nav.conseils") },
+    { path: "/contact", label: t("nav.contact") },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -42,8 +45,9 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
+          {/* Language Switcher & CTA Button */}
           <div className="hidden lg:flex items-center gap-4">
+            <LanguageSwitcher />
             <a href="tel:0225197269">
               <Button variant="default" size="lg" className="gap-2 font-semibold">
                 <Phone className="h-5 w-5" />
@@ -80,6 +84,9 @@ const Header = () => {
                   {item.label}
                 </Link>
               ))}
+              <div className="flex justify-center mt-2">
+                <LanguageSwitcher />
+              </div>
               <a href="tel:0225197269" className="mt-2">
                 <Button variant="default" size="lg" className="w-full gap-2 font-semibold">
                   <Phone className="h-5 w-5" />

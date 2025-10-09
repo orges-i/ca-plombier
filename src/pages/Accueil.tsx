@@ -2,38 +2,41 @@ import { Phone, Wrench, Clock, Shield, Droplet, Flame, Sprout } from "lucide-rea
 import { Button } from "@/components/ui/button";
 import ServiceCard from "@/components/ServiceCard";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Accueil = () => {
+  const { t } = useLanguage();
+  
   const services = [
     {
       icon: Wrench,
-      title: "Installation de Plomberie",
-      description: "Installation complète et professionnelle pour tous vos besoins en plomberie",
+      title: t("home.services.1"),
+      description: t("services.section1.desc"),
     },
     {
       icon: Flame,
-      title: "Systèmes de Chauffage",
-      description: "Installation et maintenance de systèmes de chauffage performants",
+      title: t("home.services.2"),
+      description: t("services.section2.desc"),
     },
     {
       icon: Droplet,
-      title: "Installations Sanitaires",
-      description: "Pose et rénovation de sanitaires modernes et durables",
+      title: t("home.services.3"),
+      description: t("services.section3.desc"),
     },
     {
       icon: Clock,
-      title: "Dépannage à Domicile",
-      description: "Interventions rapides pour tous problèmes urgents de plomberie",
+      title: t("home.services.4"),
+      description: t("services.section4.desc"),
     },
     {
       icon: Shield,
-      title: "SOS Plomberie 24H/24 - 7J/7",
-      description: "Service d'urgence disponible jour et nuit, 7 jours sur 7",
+      title: t("home.services.5"),
+      description: t("services.section5.desc"),
     },
     {
       icon: Sprout,
-      title: "Installation Électroménager",
-      description: "Installation de machine à laver et lave-vaisselle",
+      title: t("home.services.6"),
+      description: t("services.section6.desc"),
     },
   ];
 
@@ -46,24 +49,24 @@ const Accueil = () => {
         <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-              Dépannage à domicile<br />
+              {t("home.hero.title").split("24h/24")[0]}<br />
               <span className="text-gradient">24h/24 - 7j/7</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto">
-              Interventions rapides pour tous vos problèmes de plomberie à Genève, jour & nuit.
+              {t("home.hero.subtitle")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
               <a href="tel:0225197269">
                 <Button size="lg" className="text-lg px-8 py-6 gap-3 font-semibold hover:scale-105 transition-transform">
                   <Phone className="h-6 w-6" />
-                  Appelez-nous: 022 519 72 69
+                  {t("home.hero.cta")}
                 </Button>
               </a>
               <Link to="/contact">
                 <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white backdrop-blur-sm">
-                  Demander un devis
+                  {t("services.cta.button")}
                 </Button>
               </Link>
             </div>
@@ -75,11 +78,11 @@ const Accueil = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="h-5 w-5 text-secondary" />
-                <span className="text-sm">Professionnels certifiés</span>
+                <span className="text-sm">{t("language") === "fr" ? "Professionnels certifiés" : "Certified professionals"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Wrench className="h-5 w-5 text-secondary" />
-                <span className="text-sm">Équipement moderne</span>
+                <span className="text-sm">{t("language") === "fr" ? "Équipement moderne" : "Modern equipment"}</span>
               </div>
             </div>
           </div>
@@ -90,9 +93,11 @@ const Accueil = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Nos Services Principaux</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("home.services.title")}</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Une gamme complète de services pour tous vos besoins en plomberie et sanitaire
+              {t("language") === "fr" 
+                ? "Une gamme complète de services pour tous vos besoins en plomberie et sanitaire" 
+                : "A complete range of services for all your plumbing and sanitary needs"}
             </p>
           </div>
 
@@ -107,7 +112,7 @@ const Accueil = () => {
           <div className="text-center mt-12">
             <Link to="/services">
               <Button size="lg" variant="default">
-                Voir tous nos services
+                {t("language") === "fr" ? "Voir tous nos services" : "See all our services"}
               </Button>
             </Link>
           </div>
@@ -122,19 +127,20 @@ const Accueil = () => {
               <div className="space-y-6 animate-fade-in">
                 <h2 className="text-3xl md:text-4xl font-bold">CA Plombier Genève</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Des solutions complètes en plomberie pour particuliers et entreprises. 
-                  Nous intervenons rapidement dans tout le canton de Genève avec des outils 
-                  de technologies les plus récentes.
+                  {t("home.about.text")} {" "}
+                  {t("language") === "fr" 
+                    ? "Nous intervenons rapidement dans tout le canton de Genève avec des outils de technologies les plus récentes." 
+                    : "We intervene quickly throughout the canton of Geneva with the most recent technological tools."}
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Notre équipe de professionnels qualifiés est à votre disposition 24h/24 et 7j/7 
-                  pour résoudre tous vos problèmes de plomberie, du simple dépannage aux installations 
-                  les plus complexes.
+                  {t("language") === "fr" 
+                    ? "Notre équipe de professionnels qualifiés est à votre disposition 24h/24 et 7j/7 pour résoudre tous vos problèmes de plomberie, du simple dépannage aux installations les plus complexes." 
+                    : "Our team of qualified professionals is at your disposal 24/7 to solve all your plumbing problems, from simple repairs to the most complex installations."}
                 </p>
                 <Link to="/contact">
                   <Button size="lg" className="gap-2">
                     <Phone className="h-5 w-5" />
-                    Contactez-nous
+                    {t("home.cta.button")}
                   </Button>
                 </Link>
               </div>
@@ -146,17 +152,17 @@ const Accueil = () => {
                       <Wrench className="h-12 w-12 text-primary" />
                     </div>
                     <div>
-                      <div className="text-4xl font-bold text-primary">+15 ans</div>
-                      <div className="text-muted-foreground mt-2">D'expérience</div>
+                      <div className="text-4xl font-bold text-primary">+15 {t("language") === "fr" ? "ans" : "years"}</div>
+                      <div className="text-muted-foreground mt-2">{t("language") === "fr" ? "D'expérience" : "Of experience"}</div>
                     </div>
                     <div className="grid grid-cols-2 gap-4 text-center pt-6">
                       <div>
                         <div className="text-2xl font-bold text-foreground">24/7</div>
-                        <div className="text-sm text-muted-foreground">Disponibilité</div>
+                        <div className="text-sm text-muted-foreground">{t("language") === "fr" ? "Disponibilité" : "Availability"}</div>
                       </div>
                       <div>
                         <div className="text-2xl font-bold text-foreground">100%</div>
-                        <div className="text-sm text-muted-foreground">Satisfaction</div>
+                        <div className="text-sm text-muted-foreground">{t("language") === "fr" ? "Satisfaction" : "Satisfaction"}</div>
                       </div>
                     </div>
                   </div>

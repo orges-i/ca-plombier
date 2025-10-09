@@ -2,74 +2,63 @@ import { Wrench, Flame, Droplet, AlertCircle, Shield, Sprout, CheckCircle } from
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Services = () => {
-  const services = [
+  const { t, language } = useLanguage();
+  
+  const servicesData = [
     {
       icon: AlertCircle,
-      title: "Dépannage Urgent",
-      description: "Intervention rapide pour fuites et canalisations bouchées",
-      details: [
-        "Réparation de fuites d'eau",
-        "Débouchage de canalisations",
-        "Réparation de robinetterie",
-        "Intervention en moins d'1 heure",
-      ],
+      title: t("services.section4.title"),
+      description: t("services.section4.desc"),
+      details: language === "fr" 
+        ? ["Réparation de fuites d'eau", "Débouchage de canalisations", "Réparation de robinetterie", "Intervention en moins d'1 heure"]
+        : ["Water leak repair", "Pipe unclogging", "Tap repair", "Intervention in less than 1 hour"],
     },
     {
       icon: Droplet,
-      title: "Installation Sanitaires",
-      description: "Installation et rénovation de sanitaires",
-      details: [
-        "Pose de lavabos et éviers",
-        "Installation de douches et baignoires",
-        "Remplacement de WC",
-        "Rénovation complète de salles de bain",
-      ],
+      title: t("services.section3.title"),
+      description: t("services.section3.desc"),
+      details: language === "fr"
+        ? ["Pose de lavabos et éviers", "Installation de douches et baignoires", "Remplacement de WC", "Rénovation complète de salles de bain"]
+        : ["Installation of sinks and basins", "Installation of showers and bathtubs", "Toilet replacement", "Complete bathroom renovation"],
     },
     {
       icon: Flame,
-      title: "Systèmes de Chauffage",
-      description: "Pose et maintenance de systèmes de chauffage",
-      details: [
-        "Installation de chaudières",
-        "Radiateurs et chauffage au sol",
-        "Maintenance préventive",
-        "Optimisation énergétique",
-      ],
+      title: t("services.section2.title"),
+      description: t("services.section2.desc"),
+      details: language === "fr"
+        ? ["Installation de chaudières", "Radiateurs et chauffage au sol", "Maintenance préventive", "Optimisation énergétique"]
+        : ["Boiler installation", "Radiators and underfloor heating", "Preventive maintenance", "Energy optimization"],
     },
     {
       icon: Shield,
-      title: "Détection de Fuites",
-      description: "Détection et réparation de fuites cachées",
-      details: [
-        "Recherche de fuites invisibles",
-        "Détection électronique",
-        "Réparation sans casse",
-        "Diagnostic complet",
-      ],
+      title: language === "fr" ? "Détection de Fuites" : "Leak Detection",
+      description: language === "fr" 
+        ? "Détection et réparation de fuites cachées"
+        : "Detection and repair of hidden leaks",
+      details: language === "fr"
+        ? ["Recherche de fuites invisibles", "Détection électronique", "Réparation sans casse", "Diagnostic complet"]
+        : ["Search for invisible leaks", "Electronic detection", "Repair without damage", "Complete diagnosis"],
     },
     {
       icon: Wrench,
-      title: "Débouchage Professionnel",
-      description: "Débouchage de tuyauteries avec équipement moderne",
-      details: [
-        "Débouchage haute pression",
-        "Inspection par caméra",
-        "Nettoyage de canalisations",
-        "Prévention des bouchons",
-      ],
+      title: language === "fr" ? "Débouchage Professionnel" : "Professional Unclogging",
+      description: language === "fr"
+        ? "Débouchage de tuyauteries avec équipement moderne"
+        : "Pipe unclogging with modern equipment",
+      details: language === "fr"
+        ? ["Débouchage haute pression", "Inspection par caméra", "Nettoyage de canalisations", "Prévention des bouchons"]
+        : ["High-pressure unclogging", "Camera inspection", "Pipe cleaning", "Blockage prevention"],
     },
     {
       icon: Sprout,
-      title: "Installation Électroménager",
-      description: "Installation d'appareils électroménagers",
-      details: [
-        "Machine à laver",
-        "Lave-vaisselle",
-        "Raccordements sécurisés",
-        "Mise en service",
-      ],
+      title: t("services.section6.title"),
+      description: t("services.section6.desc"),
+      details: language === "fr"
+        ? ["Machine à laver", "Lave-vaisselle", "Raccordements sécurisés", "Mise en service"]
+        : ["Washing machine", "Dishwasher", "Secure connections", "Commissioning"],
     },
   ];
 
@@ -79,9 +68,9 @@ const Services = () => {
       <section className="hero-gradient py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold text-white">Services Complets</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white">{t("services.hero.title")}</h1>
             <p className="text-xl text-white/90">
-              Une gamme complète de services professionnels pour tous vos besoins en plomberie
+              {t("services.hero.subtitle")}
             </p>
           </div>
         </div>
@@ -91,7 +80,7 @@ const Services = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
+            {servicesData.map((service, index) => (
               <Card 
                 key={index} 
                 className="group card-hover-lift border-border hover:border-primary/50 transition-all duration-300 animate-fade-in"
@@ -124,19 +113,23 @@ const Services = () => {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-8 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold">Besoin d'un devis?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">
+              {language === "fr" ? "Besoin d'un devis?" : "Need a quote?"}
+            </h2>
             <p className="text-lg text-muted-foreground">
-              Contactez-nous dès maintenant pour obtenir un devis gratuit et sans engagement
+              {language === "fr" 
+                ? "Contactez-nous dès maintenant pour obtenir un devis gratuit et sans engagement"
+                : "Contact us now for a free, no-obligation quote"}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
                 <Button size="lg" className="gap-2">
-                  Demander un devis
+                  {t("services.cta.button")}
                 </Button>
               </Link>
               <a href="tel:0225197269">
                 <Button size="lg" variant="outline" className="gap-2">
-                  Appeler: 022 519 72 69
+                  {language === "fr" ? "Appeler: 022 519 72 69" : "Call: 022 519 72 69"}
                 </Button>
               </a>
             </div>

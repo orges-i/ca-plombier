@@ -2,81 +2,139 @@ import { Lightbulb, Droplet, Wrench, AlertTriangle, Shield, CheckCircle } from "
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Conseils = () => {
+  const { t, language } = useLanguage();
+  
   const tips = [
     {
       icon: Droplet,
-      title: "Prévention des fuites",
-      description: "Comment éviter les fuites d'eau dans votre maison",
-      content: [
-        "Vérifiez régulièrement l'état de vos robinets",
-        "Inspectez les joints et les raccords",
-        "Surveillez votre compteur d'eau pour détecter les fuites invisibles",
-        "Remplacez les pièces usées avant qu'elles ne causent des dégâts",
-      ],
+      title: t("conseils.tip3.title"),
+      description: t("conseils.tip3.desc"),
+      content: language === "fr"
+        ? [
+            "Vérifiez régulièrement l'état de vos robinets",
+            "Inspectez les joints et les raccords",
+            "Surveillez votre compteur d'eau pour détecter les fuites invisibles",
+            "Remplacez les pièces usées avant qu'elles ne causent des dégâts",
+          ]
+        : [
+            "Regularly check the condition of your taps",
+            "Inspect joints and connections",
+            "Monitor your water meter to detect invisible leaks",
+            "Replace worn parts before they cause damage",
+          ],
     },
     {
       icon: Wrench,
-      title: "Entretien des canalisations",
-      description: "Maintenez vos canalisations en bon état",
-      content: [
-        "Évitez de jeter des graisses dans l'évier",
-        "Utilisez des filtres pour retenir les débris",
-        "Nettoyez régulièrement les siphons",
-        "Faites un entretien professionnel annuel",
-      ],
+      title: t("conseils.tip1.title"),
+      description: t("conseils.tip1.desc"),
+      content: language === "fr"
+        ? [
+            "Évitez de jeter des graisses dans l'évier",
+            "Utilisez des filtres pour retenir les débris",
+            "Nettoyez régulièrement les siphons",
+            "Faites un entretien professionnel annuel",
+          ]
+        : [
+            "Avoid throwing grease down the sink",
+            "Use filters to retain debris",
+            "Regularly clean siphons",
+            "Have annual professional maintenance",
+          ],
     },
     {
       icon: AlertTriangle,
-      title: "Gestes d'urgence",
-      description: "Que faire en cas de problème urgent",
-      content: [
-        "Localisez et fermez la vanne d'arrêt principale",
-        "Coupez l'électricité si l'eau menace les installations électriques",
-        "Protégez vos biens avec des serviettes",
-        "Contactez immédiatement un plombier professionnel",
-      ],
+      title: language === "fr" ? "Gestes d'urgence" : "Emergency actions",
+      description: language === "fr" ? "Que faire en cas de problème urgent" : "What to do in case of urgent problem",
+      content: language === "fr"
+        ? [
+            "Localisez et fermez la vanne d'arrêt principale",
+            "Coupez l'électricité si l'eau menace les installations électriques",
+            "Protégez vos biens avec des serviettes",
+            "Contactez immédiatement un plombier professionnel",
+          ]
+        : [
+            "Locate and close the main shut-off valve",
+            "Cut electricity if water threatens electrical installations",
+            "Protect your belongings with towels",
+            "Immediately contact a professional plumber",
+          ],
     },
     {
       icon: Shield,
-      title: "Protection contre le gel",
-      description: "Protégez vos installations en hiver",
-      content: [
-        "Isolez les tuyaux exposés au froid",
-        "Laissez légèrement couler l'eau par temps de gel",
-        "Vidangez les installations extérieures",
-        "Maintenez une température minimale dans les locaux",
-      ],
+      title: t("conseils.tip4.title"),
+      description: t("conseils.tip4.desc"),
+      content: language === "fr"
+        ? [
+            "Isolez les tuyaux exposés au froid",
+            "Laissez légèrement couler l'eau par temps de gel",
+            "Vidangez les installations extérieures",
+            "Maintenez une température minimale dans les locaux",
+          ]
+        : [
+            "Insulate pipes exposed to cold",
+            "Let water flow slightly during freezing weather",
+            "Drain outdoor installations",
+            "Maintain a minimum temperature in premises",
+          ],
     },
   ];
 
-  const faqs = [
-    {
-      question: "Que faire en cas de fuite d'eau?",
-      answer: "Fermez immédiatement la vanne d'arrêt principale, coupez l'électricité si nécessaire, et contactez-nous au 022 519 72 69. Nous intervenons en urgence 24h/24.",
-    },
-    {
-      question: "Comment éviter les canalisations bouchées?",
-      answer: "Ne jetez pas de graisses, d'huiles ou de débris dans vos canalisations. Utilisez des filtres et nettoyez régulièrement les siphons. Un entretien préventif annuel est recommandé.",
-    },
-    {
-      question: "À quelle fréquence faut-il entretenir sa chaudière?",
-      answer: "Un entretien annuel de votre chaudière est obligatoire et recommandé pour garantir son bon fonctionnement, sa sécurité et optimiser sa durée de vie.",
-    },
-    {
-      question: "Puis-je réparer une fuite moi-même?",
-      answer: "Pour les petites fuites, vous pouvez faire un dépannage temporaire, mais il est fortement recommandé de faire appel à un professionnel pour une réparation durable et conforme aux normes.",
-    },
-    {
-      question: "Comment détecter une fuite cachée?",
-      answer: "Surveillez votre compteur d'eau lorsque tous les robinets sont fermés. Si le compteur continue de tourner, vous avez probablement une fuite. Nous proposons un service de détection par caméra.",
-    },
-    {
-      question: "Quel est le délai d'intervention pour une urgence?",
-      answer: "Nous intervenons en moins d'une heure pour toutes les urgences 24h/24 et 7j/7 dans tout le canton de Genève.",
-    },
-  ];
+  const faqs = language === "fr"
+    ? [
+        {
+          question: "Que faire en cas de fuite d'eau?",
+          answer: "Fermez immédiatement la vanne d'arrêt principale, coupez l'électricité si nécessaire, et contactez-nous au 022 519 72 69. Nous intervenons en urgence 24h/24.",
+        },
+        {
+          question: "Comment éviter les canalisations bouchées?",
+          answer: "Ne jetez pas de graisses, d'huiles ou de débris dans vos canalisations. Utilisez des filtres et nettoyez régulièrement les siphons. Un entretien préventif annuel est recommandé.",
+        },
+        {
+          question: "À quelle fréquence faut-il entretenir sa chaudière?",
+          answer: "Un entretien annuel de votre chaudière est obligatoire et recommandé pour garantir son bon fonctionnement, sa sécurité et optimiser sa durée de vie.",
+        },
+        {
+          question: "Puis-je réparer une fuite moi-même?",
+          answer: "Pour les petites fuites, vous pouvez faire un dépannage temporaire, mais il est fortement recommandé de faire appel à un professionnel pour une réparation durable et conforme aux normes.",
+        },
+        {
+          question: "Comment détecter une fuite cachée?",
+          answer: "Surveillez votre compteur d'eau lorsque tous les robinets sont fermés. Si le compteur continue de tourner, vous avez probablement une fuite. Nous proposons un service de détection par caméra.",
+        },
+        {
+          question: "Quel est le délai d'intervention pour une urgence?",
+          answer: "Nous intervenons en moins d'une heure pour toutes les urgences 24h/24 et 7j/7 dans tout le canton de Genève.",
+        },
+      ]
+    : [
+        {
+          question: "What to do in case of a water leak?",
+          answer: "Immediately close the main shut-off valve, cut electricity if necessary, and contact us at 022 519 72 69. We intervene in emergency 24/7.",
+        },
+        {
+          question: "How to avoid clogged pipes?",
+          answer: "Do not throw grease, oil or debris into your pipes. Use filters and regularly clean siphons. Annual preventive maintenance is recommended.",
+        },
+        {
+          question: "How often should the boiler be serviced?",
+          answer: "Annual boiler maintenance is mandatory and recommended to guarantee its proper operation, safety and optimize its lifespan.",
+        },
+        {
+          question: "Can I repair a leak myself?",
+          answer: "For small leaks, you can do a temporary repair, but it is strongly recommended to call a professional for a lasting repair that complies with standards.",
+        },
+        {
+          question: "How to detect a hidden leak?",
+          answer: "Monitor your water meter when all taps are closed. If the meter continues to run, you probably have a leak. We offer camera detection service.",
+        },
+        {
+          question: "What is the response time for an emergency?",
+          answer: "We intervene in less than an hour for all emergencies 24/7 throughout the canton of Geneva.",
+        },
+      ];
 
   return (
     <div className="min-h-screen">
@@ -85,9 +143,9 @@ const Conseils = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
             <Lightbulb className="h-16 w-16 text-secondary mx-auto" />
-            <h1 className="text-4xl md:text-5xl font-bold text-white">Nos Conseils</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-white">{t("conseils.hero.title")}</h1>
             <p className="text-xl text-white/90">
-              Prévention, maintenance, et astuces pour éviter les urgences et maintenir vos installations en bon état
+              {t("conseils.hero.subtitle")}
             </p>
           </div>
         </div>
@@ -97,9 +155,13 @@ const Conseils = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Conseils de Prévention</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              {language === "fr" ? "Conseils de Prévention" : "Prevention Tips"}
+            </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Des conseils pratiques pour entretenir vos installations et éviter les problèmes
+              {language === "fr"
+                ? "Des conseils pratiques pour entretenir vos installations et éviter les problèmes"
+                : "Practical advice to maintain your installations and avoid problems"}
             </p>
           </div>
 
@@ -138,9 +200,13 @@ const Conseils = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12 animate-fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Questions Fréquentes</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                {language === "fr" ? "Questions Fréquentes" : "Frequently Asked Questions"}
+              </h2>
               <p className="text-lg text-muted-foreground">
-                Trouvez les réponses aux questions les plus courantes
+                {language === "fr"
+                  ? "Trouvez les réponses aux questions les plus courantes"
+                  : "Find answers to the most common questions"}
               </p>
             </div>
 
@@ -169,14 +235,20 @@ const Conseils = () => {
         <div className="container mx-auto px-4">
           <Card className="max-w-3xl mx-auto bg-primary/5 border-primary/20 animate-fade-in">
             <CardContent className="p-8 md:p-12 text-center space-y-6">
-              <h2 className="text-3xl font-bold">Besoin d'aide ou de conseils personnalisés?</h2>
+              <h2 className="text-3xl font-bold">
+                {language === "fr" 
+                  ? "Besoin d'aide ou de conseils personnalisés?"
+                  : "Need help or personalized advice?"}
+              </h2>
               <p className="text-lg text-muted-foreground">
-                Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions
+                {language === "fr"
+                  ? "Notre équipe d'experts est à votre disposition pour répondre à toutes vos questions"
+                  : "Our team of experts is at your disposal to answer all your questions"}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="tel:0225197269">
                   <Button size="lg" className="gap-2">
-                    Appelez-nous: 022 519 72 69
+                    {language === "fr" ? "Appelez-nous: 022 519 72 69" : "Call us: 022 519 72 69"}
                   </Button>
                 </a>
               </div>
