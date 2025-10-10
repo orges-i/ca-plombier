@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import servicePlumbingImage from "@/assets/service-plumbing.jpg";
+import bathroomImage from "@/assets/bathroom-sanitary.jpg";
+import heatingImage from "@/assets/service-heating.jpg";
 
 const Services = () => {
   const { t, language } = useLanguage();
@@ -65,8 +68,12 @@ const Services = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="hero-gradient py-20">
-        <div className="container mx-auto px-4">
+      <section className="relative hero-gradient py-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={servicePlumbingImage} alt="Professional Plumbing Services" className="w-full h-full object-cover opacity-30" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/60 to-background/80"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold text-white">{t("services.hero.title")}</h1>
             <p className="text-xl text-white/90">
@@ -110,9 +117,15 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center space-y-8 animate-fade-in">
+      <section className="py-20 bg-muted/30 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="grid grid-cols-2 gap-4 h-full">
+            <img src={bathroomImage} alt="" className="w-full h-full object-cover" />
+            <img src={heatingImage} alt="" className="w-full h-full object-cover" />
+          </div>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center space-y-8 animate-fade-in bg-background/80 backdrop-blur-sm p-12 rounded-2xl border border-border">
             <h2 className="text-3xl md:text-4xl font-bold">
               {language === "fr" ? "Besoin d'un devis?" : "Need a quote?"}
             </h2>

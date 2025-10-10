@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import uncloggingImage from "@/assets/service-unclogging.jpg";
+import cameraImage from "@/assets/camera-inspection.jpg";
 
 const Debouchage = () => {
   const { t, language } = useLanguage();
@@ -60,7 +62,10 @@ const Debouchage = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="hero-gradient py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
+        <div className="absolute inset-0">
+          <img src={uncloggingImage} alt="Professional Unclogging Services" className="w-full h-full object-cover opacity-30" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/60 to-background/80"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
@@ -148,7 +153,11 @@ const Debouchage = () => {
             </div>
 
             <div className="mt-12 text-center">
-              <Card className="inline-block bg-primary/5 border-primary/20">
+              <Card className="inline-block bg-primary/5 border-primary/20 overflow-hidden">
+                <div className="relative">
+                  <img src={cameraImage} alt="Camera Inspection" className="w-full h-48 object-cover opacity-20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+                </div>
                 <CardContent className="p-8 space-y-4">
                   <Droplet className="h-12 w-12 text-primary mx-auto" />
                   <h3 className="text-2xl font-bold">

@@ -195,16 +195,17 @@ const Contact = () => {
               </p>
             </div>
             
-            <div className="aspect-video rounded-2xl overflow-hidden border border-border bg-muted flex items-center justify-center animate-fade-in">
-              <div className="text-center space-y-4 p-8">
-                <MapPin className="h-16 w-16 text-primary mx-auto" />
-                <h3 className="text-2xl font-bold">
-                  {language === "fr" ? "Canton de Genève" : "Canton of Geneva"}
-                </h3>
-                <p className="text-muted-foreground max-w-md">
-                  {t("contact.map.text")}
-                </p>
-              </div>
+            <div className="aspect-video rounded-2xl overflow-hidden border border-border animate-fade-in">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2761.2364234567!2d6.129348776896654!3d46.20870897112174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c651c7d3e3e3d%3A0x3e8e3e3e3e3e3e3e!2sRue%20de%20Lyon%2059%2C%201203%20Gen%C3%A8ve%2C%20Switzerland!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={language === "fr" ? "Notre localisation à Genève" : "Our location in Geneva"}
+              ></iframe>
             </div>
           </div>
         </div>

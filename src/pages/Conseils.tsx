@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import toolsImage from "@/assets/tools-tips.jpg";
 
 const Conseils = () => {
   const { t, language } = useLanguage();
@@ -139,8 +140,12 @@ const Conseils = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="hero-gradient py-20">
-        <div className="container mx-auto px-4">
+      <section className="relative hero-gradient py-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={toolsImage} alt="Plumbing Tools and Tips" className="w-full h-full object-cover opacity-20" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/70 to-background/85"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
             <Lightbulb className="h-16 w-16 text-secondary mx-auto" />
             <h1 className="text-4xl md:text-5xl font-bold text-white">{t("conseils.hero.title")}</h1>
