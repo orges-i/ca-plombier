@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import ServiceCard from "@/components/ServiceCard";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import heroImage from "@/assets/hero-plumber.jpg";
 
 const Accueil = () => {
   const { t } = useLanguage();
@@ -44,7 +45,10 @@ const Accueil = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative hero-gradient overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40"></div>
+        <div className="absolute inset-0">
+          <img src={heroImage} alt="Professional Plumbing Services" className="w-full h-full object-cover opacity-20" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/70 to-background/90"></div>
         
         <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
@@ -74,15 +78,15 @@ const Accueil = () => {
             <div className="flex flex-wrap justify-center gap-6 pt-8 text-white/80">
               <div className="flex items-center gap-2">
                 <Clock className="h-5 w-5 text-secondary" />
-                <span className="text-sm">Service 24/7</span>
+                <span className="text-sm">{t("home.hero.service247")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Shield className="h-5 w-5 text-secondary" />
-                <span className="text-sm">{t("language") === "fr" ? "Professionnels certifiés" : "Certified professionals"}</span>
+                <span className="text-sm">{t("home.hero.certified")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Wrench className="h-5 w-5 text-secondary" />
-                <span className="text-sm">{t("language") === "fr" ? "Équipement moderne" : "Modern equipment"}</span>
+                <span className="text-sm">{t("home.hero.modern")}</span>
               </div>
             </div>
           </div>
@@ -95,9 +99,7 @@ const Accueil = () => {
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("home.services.title")}</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              {t("language") === "fr" 
-                ? "Une gamme complète de services pour tous vos besoins en plomberie et sanitaire" 
-                : "A complete range of services for all your plumbing and sanitary needs"}
+              {t("home.services.subtitle")}
             </p>
           </div>
 
@@ -112,7 +114,7 @@ const Accueil = () => {
           <div className="text-center mt-12">
             <Link to="/services">
               <Button size="lg" variant="default">
-                {t("language") === "fr" ? "Voir tous nos services" : "See all our services"}
+                {t("home.services.viewall")}
               </Button>
             </Link>
           </div>
@@ -127,15 +129,10 @@ const Accueil = () => {
               <div className="space-y-6 animate-fade-in">
                 <h2 className="text-3xl md:text-4xl font-bold">CA Plombier Genève</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  {t("home.about.text")} {" "}
-                  {t("language") === "fr" 
-                    ? "Nous intervenons rapidement dans tout le canton de Genève avec des outils de technologies les plus récentes." 
-                    : "We intervene quickly throughout the canton of Geneva with the most recent technological tools."}
+                  {t("home.about.text")} {t("home.about.text2")}
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  {t("language") === "fr" 
-                    ? "Notre équipe de professionnels qualifiés est à votre disposition 24h/24 et 7j/7 pour résoudre tous vos problèmes de plomberie, du simple dépannage aux installations les plus complexes." 
-                    : "Our team of qualified professionals is at your disposal 24/7 to solve all your plumbing problems, from simple repairs to the most complex installations."}
+                  {t("home.about.text3")}
                 </p>
                 <Link to="/contact">
                   <Button size="lg" className="gap-2">
@@ -152,17 +149,17 @@ const Accueil = () => {
                       <Wrench className="h-12 w-12 text-primary" />
                     </div>
                     <div>
-                      <div className="text-4xl font-bold text-primary">+15 {t("language") === "fr" ? "ans" : "years"}</div>
-                      <div className="text-muted-foreground mt-2">{t("language") === "fr" ? "D'expérience" : "Of experience"}</div>
+                      <div className="text-4xl font-bold text-primary">+15 {t("home.about.years")}</div>
+                      <div className="text-muted-foreground mt-2">{t("home.about.experience")}</div>
                     </div>
                     <div className="grid grid-cols-2 gap-4 text-center pt-6">
                       <div>
                         <div className="text-2xl font-bold text-foreground">24/7</div>
-                        <div className="text-sm text-muted-foreground">{t("language") === "fr" ? "Disponibilité" : "Availability"}</div>
+                        <div className="text-sm text-muted-foreground">{t("home.about.availability")}</div>
                       </div>
                       <div>
                         <div className="text-2xl font-bold text-foreground">100%</div>
-                        <div className="text-sm text-muted-foreground">{t("language") === "fr" ? "Satisfaction" : "Satisfaction"}</div>
+                        <div className="text-sm text-muted-foreground">{t("home.about.satisfaction")}</div>
                       </div>
                     </div>
                   </div>
