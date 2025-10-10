@@ -46,9 +46,9 @@ const Accueil = () => {
       {/* Hero Section */}
       <section className="relative hero-gradient overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImage} alt="Professional Plumbing Services" className="w-full h-full object-cover opacity-40" />
+          <img src={heroImage} alt="Professional Plumbing Services" className="w-full h-full object-cover opacity-70" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/50 to-background/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-background/40 to-background/60"></div>
         
         <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">

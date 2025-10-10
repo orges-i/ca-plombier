@@ -142,9 +142,9 @@ const Conseils = () => {
       {/* Hero Section */}
       <section className="relative hero-gradient py-20 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={toolsImage} alt="Plumbing Tools and Tips" className="w-full h-full object-cover opacity-20" />
+          <img src={toolsImage} alt="Plumbing Tools and Tips" className="w-full h-full object-cover opacity-60" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/70 to-background/85"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/50 to-background/70"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
             <Lightbulb className="h-16 w-16 text-secondary mx-auto" />

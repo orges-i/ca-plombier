@@ -63,9 +63,9 @@ const Debouchage = () => {
       {/* Hero Section */}
       <section className="hero-gradient py-20 relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src={uncloggingImage} alt="Professional Unclogging Services" className="w-full h-full object-cover opacity-30" />
+          <img src={uncloggingImage} alt="Professional Unclogging Services" className="w-full h-full object-cover opacity-65" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/60 to-background/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background/65 via-background/45 to-background/65"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
