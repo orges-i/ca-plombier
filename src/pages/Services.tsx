@@ -70,9 +70,9 @@ const Services = () => {
       {/* Hero Section */}
       <section className="relative hero-gradient py-20 overflow-hidden">
         <div className="absolute inset-0">
-          <img src={servicePlumbingImage} alt="Professional Plumbing Services" className="w-full h-full object-cover opacity-65" />
+          <img src={servicePlumbingImage} alt="Professional Plumbing Services" className="w-full h-full object-cover opacity-95" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-background/65 via-background/45 to-background/65"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background/30 via-background/20 to-background/30"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center space-y-6 animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold text-white">{t("services.hero.title")}</h1>
