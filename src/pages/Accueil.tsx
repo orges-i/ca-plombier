@@ -1,5 +1,6 @@
-import { Phone, Wrench, Clock, Shield, Droplet, Flame, Sprout } from "lucide-react";
+import { Phone, Wrench, Clock, Shield, Droplet, Flame, Sprout, Star, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import ServiceCard from "@/components/ServiceCard";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -7,7 +8,34 @@ import heroImage from "@/assets/hero-plumber.jpg";
 
 const Accueil = () => {
   const { t } = useLanguage();
-  
+
+  const testimonials = [
+    {
+      author: "Marc Dubois",
+      rating: 5,
+      text: "Service impeccable ! Intervention rapide pour une fuite d'eau. Professionnel et efficace. Je recommande vivement CA Plombier.",
+      date: "Il y a 2 mois"
+    },
+    {
+      author: "Sophie Martin",
+      rating: 5,
+      text: "Excellente prestation ! Débouchage de canalisation effectué rapidement et proprement. Prix très raisonnable pour la qualité du service.",
+      date: "Il y a 1 mois"
+    },
+    {
+      author: "Jean-Pierre Rousseau",
+      rating: 5,
+      text: "Très satisfait du service. Installation de chaudière réalisée dans les règles de l'art. Équipe professionnelle et ponctuelle.",
+      date: "Il y a 3 semaines"
+    },
+    {
+      author: "Claire Fontaine",
+      rating: 5,
+      text: "Service d'urgence 24/7 très réactif. Problème résolu en moins d'une heure. Merci pour votre disponibilité et professionnalisme.",
+      date: "Il y a 1 semaine"
+    }
+  ];
+
   const services = [
     {
       icon: Wrench,
@@ -166,6 +194,54 @@ const Accueil = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("home.testimonials.title")}</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              {t("home.testimonials.subtitle")}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-12">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="animate-fade-in hover:shadow-lg transition-shadow" style={{ animationDelay: `${index * 0.1}s` }}>
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    "{testimonial.text}"
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-semibold">{testimonial.author}</p>
+                      <p className="text-sm text-muted-foreground">{testimonial.date}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <a
+              href="https://www.google.com/maps/place/CA+Plombier/@46.207263,6.1358799,15.64z/data=!4m8!3m7!1s0x478c64dabb03e5f1:0xea95766e035b66e7!8m2!3d46.2085758!4d6.1314742!9m1!1b1!16s%2Fg%2F113g6ygt9?entry=ttu&g_ep=EgoyMDI1MTAxMi4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" variant="outline" className="gap-2">
+                {t("home.testimonials.viewmore")}
+                <ExternalLink className="h-4 w-4" />
+              </Button>
+            </a>
           </div>
         </div>
       </section>
