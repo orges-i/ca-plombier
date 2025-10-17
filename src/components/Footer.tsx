@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import logo from "@/assets/caplombierlogo.png";
+import logo from "@/assets/caplombierlogo copy.png";
 
 const Footer = () => {
   const { t } = useLanguage();
