@@ -6,13 +6,61 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useState } from "react";
 
 const Contact = () => {
   const { t, language } = useLanguage();
-  
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success(t("contact.form.success"));
+    setIsSubmitting(true);
+
+    try {
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+      const response = await fetch(
+        `${supabaseUrl}/functions/v1/submit-contact-form`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${supabaseAnonKey}`,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to submit form");
+      }
+
+      toast.success(t("contact.form.success"));
+      setFormData({ name: "", phone: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error(
+        language === "fr"
+          ? "Une erreur s'est produite. Veuillez réessayer."
+          : "An error occurred. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -128,49 +176,65 @@ const Contact = () => {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
                       <Label htmlFor="name">{t("contact.form.name")} {t("common.required")}</Label>
-                      <Input 
-                        id="name" 
-                        placeholder={t("common.placeholder.name")} 
-                        required 
+                      <Input
+                        id="name"
+                        placeholder={t("common.placeholder.name")}
+                        required
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        disabled={isSubmitting}
                         className="border-border focus:border-primary"
                       />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="phone">{t("contact.form.phone")} {t("common.required")}</Label>
-                      <Input 
-                        id="phone" 
-                        type="tel" 
-                        placeholder={t("common.placeholder.phone")} 
-                        required 
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder={t("common.placeholder.phone")}
+                        required
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        disabled={isSubmitting}
                         className="border-border focus:border-primary"
                       />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="email">{t("contact.form.email")} {t("common.required")}</Label>
-                      <Input 
-                        id="email" 
-                        type="email" 
-                        placeholder={t("common.placeholder.email")} 
-                        required 
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder={t("common.placeholder.email")}
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        disabled={isSubmitting}
                         className="border-border focus:border-primary"
                       />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="message">{t("contact.form.message")} {t("common.required")}</Label>
-                      <Textarea 
-                        id="message" 
-                        placeholder={t("common.placeholder.message")} 
-                        required 
+                      <Textarea
+                        id="message"
+                        placeholder={t("common.placeholder.message")}
+                        required
                         rows={5}
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        disabled={isSubmitting}
                         className="border-border focus:border-primary resize-none"
                       />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full">
-                      {t("contact.form.submit")}
+                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? (
+                        language === "fr" ? "Envoi en cours..." : "Sending..."
+                      ) : (
+                        t("contact.form.submit")
+                      )}
                     </Button>
 
                     <p className="text-sm text-muted-foreground text-center">
